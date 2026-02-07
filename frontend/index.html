@@ -1,9 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RENN MODZ</title>
+<title>RENN MODZ HOSTING</title>
+<style>
+body{background:#050008;color:white;font-family:Arial;text-align:center}
+.card{background:#14002b;padding:20px;border-radius:20px;margin:15px;box-shadow:0 0 30px purple}
+input,select,button{padding:12px;border-radius:10px;border:none;margin-top:10px}
+button{background:#8b5cf6;color:white;font-weight:bold}
+</style>
 </head>
 <body>
-  <h1>RENN MODZ FRONTEND</h1>
+
+<h1>⚔ RENN MODZ HOSTING ⚔</h1>
+<p>Shadow Eminence System</p>
+
+<input id="user" placeholder="username (huruf kecil + angka)">
+
+<select id="plan">
+<option value="1gb">1GB RAM - CPU 50%</option>
+<option value="2gb">2GB RAM - CPU 80%</option>
+<option value="3gb">3GB RAM - CPU 100%</option>
+<option value="4gb">4GB RAM - CPU 120%</option>
+<option value="5gb">5GB RAM - CPU 150%</option>
+<option value="6gb">6GB RAM - CPU 180%</option>
+<option value="7gb">7GB RAM - CPU 200%</option>
+<option value="8gb">8GB RAM - CPU 230%</option>
+<option value="9gb">9GB RAM - CPU 250%</option>
+<option value="10gb">10GB RAM - CPU 290%</option>
+<option value="15gb">15GB RAM - CPU 350%</option>
+<option value="20gb">20GB RAM - CPU 400%</option>
+</select>
+
+<br>
+<button onclick="order()">ORDER & PAY QRIS</button>
+
+<pre id="result"></pre>
+
+<script>
+const API = "https://YOUR-BACKEND-URL"
+
+async function order(){
+ const username = user.value
+ const plan = document.getElementById("plan").value
+
+ const res = await fetch(API+"/order",{
+  method:"POST",
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({username,plan})
+ }).then(r=>r.json())
+
+ document.getElementById("result").textContent =
+ JSON.stringify(res,null,2)
+}
+</script>
 </body>
 </html>

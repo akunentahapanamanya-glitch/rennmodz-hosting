@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body style="background:#050008;color:white;font-family:Arial">
+
+<h1>RENN MODZ ADMIN</h1>
+
+<h2>Orders</h2>
+<div id="o"></div>
+
+<h2>Users</h2>
+<div id="u"></div>
+
+<script>
+const API="https://YOUR-BACKEND-URL"
+
+async function load(){
+ let o=await fetch(API+"/admin/orders").then(r=>r.json())
+ let u=await fetch(API+"/admin/users").then(r=>r.json())
+
+ oDiv.innerHTML=o.map(x=>`${x.username} | ${x.plan} | ${x.status}<br>`).join("")
+ uDiv.innerHTML=u.map(x=>`${x.email} | ${x.plan}<br>`).join("")
+}
+setInterval(load,2000)
+</script>
+
+</body>
+</html>
